@@ -7,9 +7,11 @@ import appState from './appState';
 
 import './App.scss';
 
+
 import NavMenu from '../navmenu/NavMenu';
 import Footer from 'footer/Footer';
 import About from 'about/About';
+import NoMatch from 'about/NoMatch';
 //import EntityCrud from 'entityCrud/EntityCrud';<Route path="/entityCrud/*" element={<EntityCrud/>}/>
 import SerialaiCrud from 'serialaiCrud/SerialaiCrud';
 
@@ -85,6 +87,7 @@ function App() {
 						<>						
 						<Route path="/serialaiCrud/*" element={<SerialaiCrud/>}/>
 						<Route path="/" element={<About/>}/>
+						<Route path="*" element={<NoMatch/>}/>
 						</>
 					}					
 				</Routes>

@@ -29,7 +29,7 @@ class SerialasRequest extends FormRequest
             'data' => ['required', 'string','max:255'],
             'salis' => ['required', 'string','max:255'],
             'sezonusk' => ['required', 'integer','max:50'],
-            'epizodusk' => ['required', 'integer','max:50'],
+            'epizodusk' => ['required', 'integer','max:1000'],
         ];
     }
 }

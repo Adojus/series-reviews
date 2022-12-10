@@ -32,14 +32,9 @@ function NavMenu() {
 						className={it => "nav-link " + (it.isActive ? "active" : "")}
 						>Home</NavLink>
 					<NavLink 
-						to="/entityCrud" 
-						className={it => "nav-link " + (it.isActive ? "active" : "")}
-						>Entity CRUD</NavLink>
-
-					<NavLink 
 						to="/serialaiCrud" 
 						className={it => "nav-link " + (it.isActive ? "active" : "")}
-						>Serialai CRUD</NavLink>
+						>Serialai</NavLink>
 				</span>
 				<span>
 					<Auth/>

@@ -212,6 +212,27 @@ function SerialaiList() {
 					<Column field="sezonusk" header="Sezonų sk."/>
 					<Column field="epizodusk" header="Epizodų sk."/>
 
+					<Column 
+						header="Actions" 
+						body={(row : SerialaiForL) => {
+							return (<>
+								<button
+									type="button"
+									className="btn btn-primary btn-sm mx-1"
+									onClick={() => onEdit(row.id)}
+									><i className="fa-solid fa-pen-to-square"></i></button>
+								{ 
+									<button
+										type="button"
+										className="btn btn-danger btn-sm mx-1"
+										onClick={() => update(() => { state.entToDel = row; state.isDeleting = true; })}
+										><i className="fa-solid fa-trash-can"></i></button>
+								}
+							</>);							
+						}}
+						/>
+					
+
 				</DataTable>
 			</div>
 			<div className="d-flex justify-content-center align-items-center w-100 mt-1">

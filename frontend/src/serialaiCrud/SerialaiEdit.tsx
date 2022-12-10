@@ -139,7 +139,9 @@ function SerialaiEdit() {
 			let serialas = new SerialaiForCU();
 			serialas.id = state.id;
 			serialas.pavadinimas = state.pavadinimas;
-			serialas.data = localDate.toISOString();
+			let onlyDate = localDate.toISOString().split('T');
+			serialas.data = onlyDate[0];
+
 			serialas.salis = state.salis;
 			serialas.sezonusk = state.sezonusk;
 			serialas.epizodusk = state.epizodusk;

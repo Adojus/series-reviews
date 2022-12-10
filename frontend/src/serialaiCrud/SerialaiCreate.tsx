@@ -91,14 +91,16 @@ function SerialaiCreate() {
 
 			//drop timezone from date, otherwise we will see wrong dates when they come back from backend
 			let localDate = new Date(state.data.getTime() - state.data.getTimezoneOffset() * 60 *1000);
+			let onlyDate = localDate.toISOString().split('T');
 
 			//collect entity data
 			let serialas = new SerialaiForCU();
 			serialas.pavadinimas = state.pavadinimas;
-			serialas.data = localDate.toISOString();
+			serialas.data = onlyDate[0];
 			serialas.salis = state.salis;
 			serialas.sezonusk = state.sezonusk;
 			serialas.epizodusk = state.epizodusk;
+			
 
 			//request entity creation
 			backend.post(
