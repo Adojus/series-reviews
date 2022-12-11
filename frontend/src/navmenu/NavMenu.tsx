@@ -38,6 +38,10 @@ function NavMenu() {
 						to="/serialaiCrud" 
 						className={it => "nav-link " + (it.isActive ? "active" : "")}
 						>Serialai</NavLink>
+					<NavLink 
+						to="/kategorijaCrud" 
+						className={it => "nav-link " + (it.isActive ? "active" : "")}
+						>Kategorijos</NavLink>
 				</span>
 				<span>
 					<Auth/>

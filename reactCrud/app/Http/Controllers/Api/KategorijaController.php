@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\SerialasRequest;
-use App\Models\Serialas;
+use App\Http\Requests\KategorijaRequest;
+use App\Models\Kategorija;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class SerialasController extends Controller
+class KategorijaController extends Controller
 {
     // this should be implemented in lab3
     public function __construct()
@@ -19,19 +19,19 @@ class SerialasController extends Controller
     public function index()
     {
         return response()->json(
-            Serialas::all()->toArray()
+            Kategorija::all()->toArray()
         );
         // More laravel way of writing return are displayed below the above is adapted to React App created with .Net as backend in mind
-        // return SerialasResource::collection(Serialas::all());
+        // return KategorijaResource::collection(Kategorija::all());
     }
 
-    public function store(SerialasRequest $request)
+    public function store(KategorijaRequest $request)
     {
-        $serialai = Serialas::create($request->validated());
+        $kategorijos = Kategorija::create($request->validated());
 
         return response()->json([
             'status' => 'success',
-            'serialai' => $serialai,
+            'kategorijos' => $kategorijos,
         ]);
     }
 
@@ -39,26 +39,26 @@ class SerialasController extends Controller
     {
         $id = $request->query('id');
         try{
-            $serialas = Serialas::findOrFail($id);
-            return response()->json($serialas);
+            $kategorija = Kategorija::findOrFail($id);
+            return response()->json($kategorija);
         } catch(ModelNotFoundException $e){
-            return abort(500, 'serialas not found');
+            return abort(500, 'kategorija not found');
         }
 
     }
 
-    public function update(SerialasRequest $request)
+    public function update(KategorijaRequest $request)
     {
         $id = $request->id;
         try {
-            $serialas = Serialas::findOrFail($id);
-            $serialas->update($request->validated());
+            $kategorija = Kategorija::findOrFail($id);
+            $kategorija->update($request->validated());
             return response()->json([
                 'status' => 'success'
             ]);
         }
         catch(ModelNotFoundException $e){
-            return abort(500, 'serialas not found');
+            return abort(500, 'kategorija not found');
         }
 
 
@@ -68,15 +68,15 @@ class SerialasController extends Controller
     {
         $id = $request->query('id');
         try {
-            $serialai = Serialas::findOrFail($id);
+            $kategorijos = Kategorija::findOrFail($id);
 
-            $serialai->delete();
+            $kategorijos->delete();
 
             return response()->json([
                 'status' => 'success',
             ]);
         } catch(ModelNotFoundException $e){
-            return abort(500, 'serialas not found');
+            return abort(500, 'kategorija not found');
         }
 
     }

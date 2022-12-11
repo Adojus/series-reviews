@@ -5,6 +5,8 @@ use App\Http\Controllers\Api\SerialasController;
 use App\Models\Serialas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\KategorijaController;
+use App\Models\Kategorija;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,4 +35,13 @@ Route::controller(SerialasController::class)->group(function () {
     Route::get('serialas/load', 'show');
     Route::post('serialas/update', 'update');
     Route::get('serialas/delete', 'destroy');
+});
+
+
+Route::controller(KategorijaController::class)->group(function () {
+    Route::get('kategorija/list','index');
+    Route::post('kategorija/create', 'store');
+    Route::get('kategorija/load', 'show');
+    Route::post('kategorija/update', 'update');
+    Route::get('kategorija/delete', 'destroy');
 });
