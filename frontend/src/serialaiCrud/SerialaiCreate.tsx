@@ -101,7 +101,6 @@ function SerialaiCreate() {
 			serialas.sezonusk = state.sezonusk;
 			serialas.epizodusk = state.epizodusk;
 			
-
 			//request entity creation
 			backend.post(
 				config.backendUrl + "/serialas/create",
