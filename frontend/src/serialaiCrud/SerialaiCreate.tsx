@@ -3,14 +3,13 @@ import { useNavigate } from 'react-router-dom';
 
 import { Calendar } from 'primereact/calendar';
 import { InputText } from 'primereact/inputtext';
-import { Rating } from 'primereact/rating';
-import { Checkbox } from 'primereact/checkbox';
   
 import config from 'app/config';
 import backend from 'app/backend';
 import { notifySuccess } from 'app/notify';
 
 import { SerialaiForCU } from './models';
+import { Dropdown } from 'primereact/dropdown';
 
 
 /**
@@ -23,6 +22,7 @@ class State
 	salis: string = "";
 	sezonusk: number = 0;
 	epizodusk: number = 0;
+	fk_kategorijos_id: number = 0;
 
 	isNameErr : boolean = false;
 	isSaveErr : boolean = false;
@@ -100,6 +100,7 @@ function SerialaiCreate() {
 			serialas.salis = state.salis;
 			serialas.sezonusk = state.sezonusk;
 			serialas.epizodusk = state.epizodusk;
+			serialas.fk_kategorijos_id = state.fk_kategorijos_id;
 			
 			//request entity creation
 			backend.post(
@@ -185,6 +186,18 @@ function SerialaiCreate() {
 					{state.isNameErr && 
 						<div className="invalid-feedback">Name must be non empty and non whitespace.</div>
 					}
+
+					<label htmlFor="fk_kategorijos_id" className="form-label">Kategorijos ID:</label>
+					<InputText 
+						id="fk_kategorijos_id" 
+						className={"form-control " + (state.isNameErr ? "is-invalid" : "")}
+						value={state.fk_kategorijos_id}
+						onChange={(e) => update(() => state.fk_kategorijos_id = Number(e.target.value))}
+						/>
+					{state.isNameErr && 
+						<div className="invalid-feedback">Name must be non empty and non whitespace.</div>
+					}
+
 
 
 				</div>

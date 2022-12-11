@@ -9,6 +9,7 @@ interface SerialaiForL {
 	salis: string;
 	sezonusk: number;
 	epizodusk: number;
+	fk_kategorijos_id: number;
 }
 
 /**
@@ -21,6 +22,7 @@ class SerialaiForCU {
 	salis: string = "";
 	sezonusk: number = 0;
 	epizodusk: number = 0;
+	fk_kategorijos_id: number = 0;
 }
 
 //

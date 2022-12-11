@@ -183,6 +183,9 @@ function SerialaiList() {
 
 				<label htmlFor="epizodusk" className="form-label">Epizodų skaičius:</label>
 				<div id="epizodusk">{state.entToDel?.epizodusk}</div>
+
+				<label htmlFor="fk_kategorijos_id" className="form-label">Kategorijos ID:</label>
+				<div id="fk_kategorijos_id">{state.entToDel?.fk_kategorijos_id}</div>
 				
 				<div className="d-flex justify-content-end">
 					<button
@@ -211,6 +214,7 @@ function SerialaiList() {
 					<Column field="salis" header="Šalis"/>
 					<Column field="sezonusk" header="Sezonų sk."/>
 					<Column field="epizodusk" header="Epizodų sk."/>
+					<Column field="fk_kategorijos_id" header="Kategorijos ID"/>
 
 					<Column 
 						header="Actions" 

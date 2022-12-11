@@ -28,6 +28,7 @@ class State
 	salis: string = "";
 	sezonusk: number = 0;
 	epizodusk: number = 0;
+	fk_kategorijos_id: number = 0;
 
 	isNameErr : boolean = false;
 	isSaveErr : boolean = false;
@@ -105,6 +106,7 @@ function SerialaiEdit() {
 				state.salis = data.salis;
 				state.sezonusk = data.sezonusk;
 				state.epizodusk = data.epizodusk;
+				state.fk_kategorijos_id = data.fk_kategorijos_id;
 			})
 		})
 
@@ -145,6 +147,7 @@ function SerialaiEdit() {
 			serialas.salis = state.salis;
 			serialas.sezonusk = state.sezonusk;
 			serialas.epizodusk = state.epizodusk;
+			serialas.fk_kategorijos_id = state.fk_kategorijos_id;
 
 			//request serialas creation
 			backend.post(
@@ -240,6 +243,17 @@ function SerialaiEdit() {
 						className={"form-control " + (state.isNameErr ? "is-invalid" : "")}
 						value={state.epizodusk}
 						onChange={(e) => update(() => state.epizodusk = Number(e.target.value))}
+						/>
+					{state.isNameErr && 
+						<div className="invalid-feedback">Name must be non empty and non whitespace.</div>
+					}
+
+					<label htmlFor="fk_kategorijos_id" className="form-label">Kategorijos ID:</label>
+					<InputText 
+						id="fk_kategorijos_id" 
+						className={"form-control " + (state.isNameErr ? "is-invalid" : "")}
+						value={state.fk_kategorijos_id}
+						onChange={(e) => update(() => state.fk_kategorijos_id = Number(e.target.value))}
 						/>
 					{state.isNameErr && 
 						<div className="invalid-feedback">Name must be non empty and non whitespace.</div>
