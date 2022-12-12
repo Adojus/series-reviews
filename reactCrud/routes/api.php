@@ -56,3 +56,5 @@ Route::controller(AktoriusController::class)->group(function () {
     Route::post('aktorius/update', 'update');
     Route::get('aktorius/delete', 'destroy');
 });
+
+
