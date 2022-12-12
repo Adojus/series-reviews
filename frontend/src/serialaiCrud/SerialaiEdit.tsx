@@ -33,12 +33,21 @@ class State
 	isNameErr : boolean = false;
 	isSaveErr : boolean = false;
 
+	isSalisErr : boolean = false;
+	isSezonuskErr : boolean = false;
+	isEpizoduskErr : boolean = false;
+	isFkErr : boolean = false;
+
 	/**
 	 * Resets error flags to off.
 	 */
 	resetErrors() {
 		this.isNameErr = false;
 		this.isSaveErr = false;
+		this.isSalisErr = false;
+		this.isSezonuskErr = false;
+		this.isEpizoduskErr = false;
+		this.isFkErr = false;
 	}
 
 	/**
@@ -134,6 +143,37 @@ function SerialaiEdit() {
 			if( state.isNameErr )
 				return;
 
+			//validate form
+			if( state.salis.trim() === "" )
+			state.isSalisErr = true;
+			//errors found? abort
+			if( state.isSalisErr )
+				return;
+
+
+			//validate form
+			if( state.sezonusk < 1 )
+			state.isSezonuskErr = true;
+			//errors found? abort
+			if( state.isSezonuskErr )
+				return;
+				
+
+			//validate form
+			if( state.epizodusk < 1 )
+			state.isEpizoduskErr = true;
+			//errors found? abort
+			if( state.isEpizoduskErr )
+				return;
+
+
+			//validate form
+			if( state.fk_kategorijos_id < 1 )
+			state.isFkErr = true;
+			//errors found? abort
+			if( state.isFkErr )
+				return;
+
 			//drop timezone from date, otherwise we will see wrong dates when they come back from backend
 			let localDate = new Date(state.data.getTime() - state.data.getTimezoneOffset() * 60 *1000);
 
@@ -214,49 +254,49 @@ function SerialaiEdit() {
 						onChange={(e) => update(() => state.pavadinimas = e.target.value)}
 						/>
 					{state.isNameErr && 
-						<div className="invalid-feedback">Name must be non empty and non whitespace.</div>
+						<div className="invalid-feedback">Pavadinimas must be non empty and non whitespace.</div>
 					}
 					<label htmlFor="salis" className="form-label">Šalis:</label>
 					<InputText 
 						id="salis" 
-						className={"form-control " + (state.isNameErr ? "is-invalid" : "")}
+						className={"form-control " + (state.isSalisErr ? "is-invalid" : "")}
 						value={state.salis}
 						onChange={(e) => update(() => state.salis = e.target.value)}
 						/>
-					{state.isNameErr && 
-						<div className="invalid-feedback">Name must be non empty and non whitespace.</div>
+					{state.isSalisErr && 
+						<div className="invalid-feedback">Salis must be non empty and non whitespace.</div>
 					}
 					<label htmlFor="sezonusk" className="form-label">Sezonų skaičius:</label>
 					<InputText 
 						id="sezonusk" 
-						className={"form-control " + (state.isNameErr ? "is-invalid" : "")}
+						className={"form-control " + (state.isSezonuskErr ? "is-invalid" : "")}
 						value={state.sezonusk}
 						onChange={(e) => update(() => state.sezonusk = Number(e.target.value))}
 						/>
-					{state.isNameErr && 
-						<div className="invalid-feedback">Name must be non empty and non whitespace.</div>
+					{state.isSezonuskErr && 
+						<div className="invalid-feedback">Sezonu sk. invalid value.</div>
 					}
 
 					<label htmlFor="epizodusk" className="form-label">Epizodų skaičius:</label>
 					<InputText 
 						id="epizodusk" 
-						className={"form-control " + (state.isNameErr ? "is-invalid" : "")}
+						className={"form-control " + (state.isEpizoduskErr ? "is-invalid" : "")}
 						value={state.epizodusk}
 						onChange={(e) => update(() => state.epizodusk = Number(e.target.value))}
 						/>
-					{state.isNameErr && 
-						<div className="invalid-feedback">Name must be non empty and non whitespace.</div>
+					{state.isEpizoduskErr && 
+						<div className="invalid-feedback">Epizodu sk. must be non empty and non whitespace.</div>
 					}
 
 					<label htmlFor="fk_kategorijos_id" className="form-label">Kategorijos ID:</label>
 					<InputText 
 						id="fk_kategorijos_id" 
-						className={"form-control " + (state.isNameErr ? "is-invalid" : "")}
+						className={"form-control " + (state.isFkErr ? "is-invalid" : "")}
 						value={state.fk_kategorijos_id}
 						onChange={(e) => update(() => state.fk_kategorijos_id = Number(e.target.value))}
 						/>
-					{state.isNameErr && 
-						<div className="invalid-feedback">Name must be non empty and non whitespace.</div>
+					{state.isFkErr && 
+						<div className="invalid-feedback">Kategorijos ID invalid.</div>
 					}
 
 					</div>

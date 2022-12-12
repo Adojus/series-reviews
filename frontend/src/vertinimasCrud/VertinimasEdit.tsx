@@ -32,12 +32,19 @@ class State
 	isNameErr : boolean = false;
 	isSaveErr : boolean = false;
 
+	isIvertinimasErr : boolean = false;
+	isFkNaudotojoErr : boolean = false;
+	isFkSerialoErr : boolean = false;
+
 	/**
 	 * Resets error flags to off.
 	 */
 	resetErrors() {
 		this.isNameErr = false;
 		this.isSaveErr = false;
+		this.isIvertinimasErr = false;
+		this.isFkNaudotojoErr = false;
+		this.isFkSerialoErr = false;
 	}
 
 	/**
@@ -132,6 +139,28 @@ function VertinimasEdit() {
 			if( state.isNameErr )
 				return;
 
+			//validate form
+			if( state.ivertinimas < 1 )
+			state.isIvertinimasErr = true;
+			//errors found? abort
+			if( state.isIvertinimasErr )
+				return;
+
+			//validate form
+			if( state.fk_naudotojo_id < 1)
+			state.isFkNaudotojoErr = true;
+			//errors found? abort
+			if( state.isFkNaudotojoErr )
+				return;
+
+			//validate form
+			if( state.fk_serialo_id < 1 )
+			state.isFkSerialoErr = true;
+			//errors found? abort
+			if( state.isFkSerialoErr )
+				return;
+
+
 			//drop timezone from date, otherwise we will see wrong dates when they come back from backend
 			let localDate = new Date(state.data.getTime() - state.data.getTimezoneOffset() * 60 *1000);
 
@@ -225,30 +254,30 @@ function VertinimasEdit() {
 								/>
 							<span className="ms-2 ">({state.ivertinimas} iš 5)</span>
 						</span>
-					{state.isNameErr && 
-						<div className="invalid-feedback">Name must be non empty and non whitespace.</div>
+					{state.isIvertinimasErr && 
+						<div className="invalid-feedback">Ivertinimas invalid value.</div>
 					}
 
 					<label htmlFor="fk_naudotojo_id" className="form-label">Naudotojo ID:</label>
 					<InputText 
 						id="fk_naudotojo_id" 
-						className={"form-control " + (state.isNameErr ? "is-invalid" : "")}
+						className={"form-control " + (state.isFkNaudotojoErr ? "is-invalid" : "")}
 						value={state.fk_naudotojo_id}
 						onChange={(e) => update(() => state.fk_naudotojo_id = Number(e.target.value))}
 						/>
-					{state.isNameErr && 
-						<div className="invalid-feedback">Name must be non empty and non whitespace.</div>
+					{state.isFkNaudotojoErr && 
+						<div className="invalid-feedback">Naudotojo ID invalid value.</div>
 					}
 
 					<label htmlFor="fk_serialo_id" className="form-label">Serialo ID:</label>
 					<InputText 
 						id="fk_serialo_id" 
-						className={"form-control " + (state.isNameErr ? "is-invalid" : "")}
+						className={"form-control " + (state.isFkSerialoErr ? "is-invalid" : "")}
 						value={state.fk_serialo_id}
 						onChange={(e) => update(() => state.fk_serialo_id = Number(e.target.value))}
 						/>
-					{state.isNameErr && 
-						<div className="invalid-feedback">Name must be non empty and non whitespace.</div>
+					{state.isFkSerialoErr && 
+						<div className="invalid-feedback">Serialo ID invalid value..</div>
 					}
 
 					</div>

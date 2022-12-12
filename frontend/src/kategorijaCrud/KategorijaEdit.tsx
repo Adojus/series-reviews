@@ -184,7 +184,7 @@ function KategorijaEdit() {
 						onChange={(e) => update(() => state.pavadinimas = e.target.value)}
 						/>
 					{state.isNameErr && 
-						<div className="invalid-feedback">Name must be non empty and non whitespace.</div>
+						<div className="invalid-feedback">Pavadinimas must be non empty and non whitespace.</div>
 					}
 					</div>
 				</div>

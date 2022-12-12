@@ -32,6 +32,9 @@ class State
 
 	isNameErr : boolean = false;
 	isSaveErr : boolean = false;
+	isPavardeErr : boolean = false;
+	isLytisErr : boolean = false;
+	isSalisErr : boolean = false;
 
 	/**
 	 * Resets error flags to off.
@@ -39,6 +42,9 @@ class State
 	resetErrors() {
 		this.isNameErr = false;
 		this.isSaveErr = false;
+		this.isPavardeErr = false;
+		this.isLytisErr = false;
+		this.isSalisErr = false;
 	}
 
 	/**
@@ -133,6 +139,30 @@ function AktoriusEdit() {
 			if( state.isNameErr )
 				return;
 
+				//validate form
+			if( state.pavarde.trim() === "" )
+			state.isPavardeErr = true;
+
+			//errors found? abort
+			if( state.isPavardeErr )
+				return;
+
+			//validate form
+			if( state.lytis.trim() === "" )
+			state.isLytisErr = true;
+		
+			//errors found? abort
+			if( state.isLytisErr )
+				return;
+
+			//validate form
+			if( state.salis.trim() === "" )
+			state.isSalisErr = true;
+
+			//errors found? abort
+			if( state.isSalisErr )
+				return;
+
 			//drop timezone from date, otherwise we will see wrong dates when they come back from backend
 			let localDate = new Date(state.gimimo_data.getTime() - state.gimimo_data.getTimezoneOffset() * 60 *1000);
 
@@ -203,17 +233,17 @@ function AktoriusEdit() {
 						onChange={(e) => update(() => state.vardas = e.target.value)}
 						/>
 					{state.isNameErr && 
-						<div className="invalid-feedback">Name must be non empty and non whitespace.</div>
+						<div className="invalid-feedback">Vardas must be non empty and non whitespace.</div>
 					}
 					<label htmlFor="pavarde" className="form-label">Pavardė:</label>
 					<InputText 
 						id="pavarde" 
-						className={"form-control " + (state.isNameErr ? "is-invalid" : "")}
+						className={"form-control " + (state.isPavardeErr ? "is-invalid" : "")}
 						value={state.pavarde}
 						onChange={(e) => update(() => state.pavarde = e.target.value)}
 						/>
-					{state.isNameErr && 
-						<div className="invalid-feedback">Name must be non empty and non whitespace.</div>
+					{state.isPavardeErr && 
+						<div className="invalid-feedback">Pavarde must be non empty and non whitespace.</div>
 					}
 					
                     <label htmlFor="gimimo_data" className="form-label">Gimimo data:</label>
@@ -226,18 +256,22 @@ function AktoriusEdit() {
 						/>
 
 					<label htmlFor="lytis" className="form-label">Lytis:</label>
-					<Dropdown value={state.lytis} options={["vyras","moteris"]}
-					 onChange={(e) => update(() => state.lytis = e.target.value)} placeholder="Pasirinkite lytį"/>
+					<Dropdown className={(state.isLytisErr ? "is-invalid" : "")} 
+					value={state.lytis} options={["vyras","moteris"]}
+					 onChange={(e) => update(() => state.lytis = e.target.value as string)} placeholder="Pasirinkite lytį"/>
+					{state.isLytisErr && 
+						<div className="invalid-feedback">Lytis must be non empty and non whitespace.</div>
+					}
 
 					<label htmlFor="salis" className="form-label">Šalis:</label>
 					<InputText 
 						id="salis" 
-						className={"form-control " + (state.isNameErr ? "is-invalid" : "")}
+						className={"form-control " + (state.isSalisErr ? "is-invalid" : "")}
 						value={state.salis}
 						onChange={(e) => update(() => state.salis = e.target.value)}
 						/>
-					{state.isNameErr && 
-						<div className="invalid-feedback">Name must be non empty and non whitespace.</div>
+					{state.isSalisErr && 
+						<div className="invalid-feedback">Salis must be non empty and non whitespace.</div>
 					}
 
 					</div>
