@@ -46,6 +46,10 @@ function NavMenu() {
 						to="/aktoriusCrud" 
 						className={it => "nav-link " + (it.isActive ? "active" : "")}
 						>Aktoriai</NavLink>
+					<NavLink 
+						to="/vertinimasCrud" 
+						className={it => "nav-link " + (it.isActive ? "active" : "")}
+						>Vertinimai</NavLink>
 				</span>
 				<span>
 					<Auth/>

@@ -12,6 +12,9 @@ use App\Models\Kategorija;
 
 use App\Http\Controllers\Api\AktoriusController;
 use App\Models\Aktorius;
+
+use App\Http\Controllers\Api\VertinimasController;
+use App\Models\Vertinimas;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -55,6 +58,14 @@ Route::controller(AktoriusController::class)->group(function () {
     Route::get('aktorius/load', 'show');
     Route::post('aktorius/update', 'update');
     Route::get('aktorius/delete', 'destroy');
+});
+
+Route::controller(VertinimasController::class)->group(function () {
+    Route::get('vertinimas/list','index');
+    Route::post('vertinimas/create', 'store');
+    Route::get('vertinimas/load', 'show');
+    Route::post('vertinimas/update', 'update');
+    Route::get('vertinimas/delete', 'destroy');
 });
 
 

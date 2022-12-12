@@ -9,6 +9,7 @@ import backend from 'app/backend';
 import { notifySuccess } from 'app/notify';
 
 import { AktoriusForCU } from './models';
+import { Dropdown } from 'primereact/dropdown';
 
 
 /**
@@ -86,6 +87,8 @@ function AktoriusCreate() {
 			//errors found? abort
 			if( state.isNameErr )
 				return;
+
+			
 
 			//drop timezone from date, otherwise we will see wrong dates when they come back from backend
 			let localDate = new Date(state.gimimo_data.getTime() - state.gimimo_data.getTimezoneOffset() * 60 *1000);
@@ -169,15 +172,8 @@ function AktoriusCreate() {
 						/>
 
 					<label htmlFor="lytis" className="form-label">Lytis:</label>
-					<InputText 
-						id="lytis" 
-						className={"form-control " + (state.isNameErr ? "is-invalid" : "")}
-						value={state.lytis}
-						onChange={(e) => update(() => state.lytis = e.target.value)}
-						/>
-					{state.isNameErr && 
-						<div className="invalid-feedback">Name must be non empty and non whitespace.</div>
-					}
+					<Dropdown value={state.lytis} options={["vyras","moteris"]}
+					 onChange={(e) => update(() => state.lytis = e.target.value)} placeholder="Pasirinkite lytį"/>
 
 					<label htmlFor="salis" className="form-label">Šalis:</label>
 					<InputText 

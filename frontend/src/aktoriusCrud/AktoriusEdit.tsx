@@ -11,6 +11,7 @@ import backend from 'app/backend';
 import { notifySuccess } from 'app/notify';
 
 import { AktoriusForCU } from './models';
+import { Dropdown } from 'primereact/dropdown';
 
 
 /**
@@ -224,16 +225,9 @@ function AktoriusEdit() {
 						dateFormat="yy-mm-dd"
 						/>
 
-                    <label htmlFor="lytis" className="form-label">Lytis:</label>
-                    <InputText 
-						id="lytis" 
-						className={"form-control " + (state.isNameErr ? "is-invalid" : "")}
-						value={state.lytis}
-						onChange={(e) => update(() => state.lytis = e.target.value)}
-						/>
-					{state.isNameErr && 
-						<div className="invalid-feedback">Name must be non empty and non whitespace.</div>
-					}
+					<label htmlFor="lytis" className="form-label">Lytis:</label>
+					<Dropdown value={state.lytis} options={["vyras","moteris"]}
+					 onChange={(e) => update(() => state.lytis = e.target.value)} placeholder="Pasirinkite lytį"/>
 
 					<label htmlFor="salis" className="form-label">Šalis:</label>
 					<InputText 
