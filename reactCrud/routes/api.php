@@ -36,7 +36,7 @@ Route::controller(SerialasController::class)->group(function () {
     Route::post('serialas/update', 'update');
     Route::get('serialas/delete', 'destroy');
 });
-
+//haa
 
 Route::controller(KategorijaController::class)->group(function () {
     Route::get('kategorija/list','index');
