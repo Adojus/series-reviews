@@ -33,7 +33,7 @@ function NavMenu() {
 					<NavLink 
 						to="/" 
 						className={it => "nav-link " + (it.isActive ? "active" : "")}
-						>Home</NavLink>
+						>Pagrindinis</NavLink>
 					<NavLink 
 						to="/serialaiCrud" 
 						className={it => "nav-link " + (it.isActive ? "active" : "")}
@@ -42,6 +42,10 @@ function NavMenu() {
 						to="/kategorijaCrud" 
 						className={it => "nav-link " + (it.isActive ? "active" : "")}
 						>Kategorijos</NavLink>
+					<NavLink 
+						to="/aktoriusCrud" 
+						className={it => "nav-link " + (it.isActive ? "active" : "")}
+						>Aktoriai</NavLink>
 				</span>
 				<span>
 					<Auth/>

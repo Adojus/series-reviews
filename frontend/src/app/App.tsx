@@ -15,6 +15,7 @@ import NoMatch from 'about/NoMatch';
 //import EntityCrud from 'entityCrud/EntityCrud';<Route path="/entityCrud/*" element={<EntityCrud/>}/>
 import SerialaiCrud from 'serialaiCrud/SerialaiCrud';
 import KategorijaCrud from 'kategorijaCrud/KategorijaCrud';
+import AktoriusCrud from 'aktoriusCrud/AktoriusCrud';
 
 
 class State {
@@ -88,6 +89,7 @@ function App() {
 						<>						
 						<Route path="/serialaiCrud/*" element={<SerialaiCrud/>}/>
 						<Route path="/kategorijaCrud/*" element={<KategorijaCrud/>}/>
+						<Route path="/aktoriusCrud/*" element={<AktoriusCrud/>}/>
 						<Route path="/" element={<About/>}/>
 						<Route path="*" element={<NoMatch/>}/>
 						</>

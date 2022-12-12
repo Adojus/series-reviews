@@ -1,13 +1,17 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\Api\SerialasController;
-use App\Models\Serialas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\Api\SerialasController;
+use App\Models\Serialas;
+
 use App\Http\Controllers\Api\KategorijaController;
 use App\Models\Kategorija;
 
+use App\Http\Controllers\Api\AktoriusController;
+use App\Models\Aktorius;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -36,7 +40,6 @@ Route::controller(SerialasController::class)->group(function () {
     Route::post('serialas/update', 'update');
     Route::get('serialas/delete', 'destroy');
 });
-//haa
 
 Route::controller(KategorijaController::class)->group(function () {
     Route::get('kategorija/list','index');
@@ -44,4 +47,12 @@ Route::controller(KategorijaController::class)->group(function () {
     Route::get('kategorija/load', 'show');
     Route::post('kategorija/update', 'update');
     Route::get('kategorija/delete', 'destroy');
+});
+
+Route::controller(AktoriusController::class)->group(function () {
+    Route::get('aktorius/list','index');
+    Route::post('aktorius/create', 'store');
+    Route::get('aktorius/load', 'show');
+    Route::post('aktorius/update', 'update');
+    Route::get('aktorius/delete', 'destroy');
 });
