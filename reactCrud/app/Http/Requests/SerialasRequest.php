@@ -30,6 +30,7 @@ class SerialasRequest extends FormRequest
             'salis' => ['required', 'string','max:255'],
             'sezonusk' => ['required', 'integer','max:50'],
             'epizodusk' => ['required', 'integer','max:1000'],
+            'fk_kategorijos_id' => ['required', 'integer','max:1000'],
         ];
     }
 }

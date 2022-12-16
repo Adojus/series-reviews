@@ -10,7 +10,7 @@ class Vertinimas extends Model
     public $table = 'vertinimai';
     use HasFactory;
     public $timestamps = false;
-    protected $fillable = ['komentaras','data',
+    protected $fillable = ['komentaras',
      'ivertinimas', 'fk_naudotojo_id','fk_serialo_id'];
 
 }

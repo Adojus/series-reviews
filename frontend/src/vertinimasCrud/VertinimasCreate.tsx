@@ -7,7 +7,7 @@ import { InputText } from 'primereact/inputtext';
 import config from 'app/config';
 import backend from 'app/backend';
 import { notifySuccess } from 'app/notify';
-
+import { Rating } from 'primereact/rating';
 import { VertinimasForCU } from './models';
 import { Dropdown } from 'primereact/dropdown';
 
@@ -171,17 +171,20 @@ function VertinimasCreate() {
 					}
 
 					<label htmlFor="ivertinimas" className="form-label">Įvertinimas:</label>
-					<InputText 
-						id="ivertinimas" 
-						className={"form-control " + (state.isIvertinimasErr ? "is-invalid" : "")}
-						value={state.ivertinimas}
-						onChange={(e) => update(() => state.ivertinimas = Number(e.target.value))}
-						/>
+                    <span className="d-flex align-items-center">
+							<Rating
+								id="ivertinimas"
+								stars={5}
+								value={state.ivertinimas}
+								onChange={(e) => update(() => state.ivertinimas = e.target.value ?? 0)}
+								/>
+							<span className="ms-2 ">({state.ivertinimas} iš 5)</span>
+						</span>
 					{state.isIvertinimasErr && 
 						<div className="invalid-feedback">Ivertinimas invalid value.</div>
 					}
 
-					<label htmlFor="fk_naudotojo_id" className="form-label">Sezonų skaičius:</label>
+					<label htmlFor="fk_naudotojo_id" className="form-label">Naudotojo ID:</label>
 					<InputText 
 						id="fk_naudotojo_id" 
 						className={"form-control " + (state.isFkNaudotojoErr ? "is-invalid" : "")}
@@ -192,7 +195,7 @@ function VertinimasCreate() {
 						<div className="invalid-feedback">Naudotojo ID invalid value.</div>
 					}
 
-					<label htmlFor="fk_serialo_id" className="form-label">Epizodų skaičius:</label>
+					<label htmlFor="fk_serialo_id" className="form-label">Serialo ID:</label>
 					<InputText 
 						id="fk_serialo_id" 
 						className={"form-control " + (state.isFkSerialoErr ? "is-invalid" : "")}

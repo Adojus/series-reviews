@@ -26,7 +26,7 @@ class VertinimasRequest extends FormRequest
     {
         return [
             'komentaras' => ['required', 'string','max:255'],
-            'data' => ['required', 'string','max:255'],
+            'data' => [],
             'ivertinimas' => ['required', 'integer','max:5'],
             'fk_naudotojo_id' => ['required', 'integer','max:1000'],
             'fk_serialo_id' => ['required', 'integer','max:1000'],
